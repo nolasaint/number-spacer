@@ -1,8 +1,14 @@
 package algorithm
 
-// create a list of n logarithmically-spaced numbers between min and max
+import "math"
+
+// create a list of n base10 logarithmically-spaced numbers with bases between start and stop
 // if max > min, list will be ascending, else it will be descending
-func Logspace(min float64, max float64, n uint32) []float64 {
-	// TODO: implement me
-	return make([]float64, 0)
+func Logspace(start float64, stop float64, n uint32) []float64 {
+	numbers := make([]float64, n)
+	for i := 0; i < int(n); i++ {
+		exponent := start + (float64(i) * (stop - start) / (float64(n) - 1))
+		numbers[int(i)] = math.Pow(10., exponent)
+	}
+	return numbers
 }
