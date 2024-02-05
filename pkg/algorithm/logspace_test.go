@@ -36,9 +36,20 @@ func TestLogspaceNoElements(t *testing.T) {
 	assertFloat64SliceEquals(expected, observed, t)
 }
 
-func TestLogspace(t *testing.T) {
+func TestLogspaceAscending(t *testing.T) {
 	expected := []float64{100, 215.443469, 464.158883, 1000}
 	observed := Logspace(2., 3., 4)
+
+	for i := 0; i < len(observed); i++ {
+		observed[i] = toFixed(observed[i], 6)
+	}
+
+	assertFloat64SliceEquals(expected, observed, t)
+}
+
+func TestLogspaceDescending(t *testing.T) {
+	expected := []float64{1000, 464.158883, 215.443469, 100}
+	observed := Logspace(3., 2., 4)
 
 	for i := 0; i < len(observed); i++ {
 		observed[i] = toFixed(observed[i], 6)

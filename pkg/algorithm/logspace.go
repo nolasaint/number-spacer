@@ -2,7 +2,7 @@ package algorithm
 
 import "math"
 
-// create a list of n base10 logarithmically-spaced numbers with bases between start and stop
+// create a list of n base10 logarithmically-spaced numbers between 10**start and 10**stop
 // if max > min, list will be ascending, else it will be descending
 func Logspace(start float64, stop float64, n uint32) []float64 {
 	numbers := make([]float64, n)
