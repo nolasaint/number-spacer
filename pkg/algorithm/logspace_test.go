@@ -1,8 +1,8 @@
 package algorithm
 
 import (
+	"internal/asserts"
 	"math"
-	"reflect"
 	"testing"
 )
 
@@ -19,12 +19,6 @@ func toFixed(num float64, precision int) float64 {
 	return float64(round(num*output)) / output
 }
 
-func assertFloat64SliceEquals(expected []float64, observed []float64, t *testing.T) {
-	if !reflect.DeepEqual(expected, observed) {
-		t.Fatalf("\nexpected: %v\nbut got:  %v", expected, observed)
-	}
-}
-
 //
 // tests
 //
@@ -33,7 +27,7 @@ func TestLogspaceNoElements(t *testing.T) {
 	expected := []float64{}
 	observed := Logspace(10., 100., 0, 10.)
 
-	assertFloat64SliceEquals(expected, observed, t)
+	asserts.Float64SliceEquals(expected, observed, t)
 }
 
 func TestLogspaceAscending(t *testing.T) {
@@ -44,7 +38,7 @@ func TestLogspaceAscending(t *testing.T) {
 		observed[i] = toFixed(observed[i], 6)
 	}
 
-	assertFloat64SliceEquals(expected, observed, t)
+	asserts.Float64SliceEquals(expected, observed, t)
 }
 
 func TestLogspaceDescending(t *testing.T) {
@@ -55,5 +49,5 @@ func TestLogspaceDescending(t *testing.T) {
 		observed[i] = toFixed(observed[i], 6)
 	}
 
-	assertFloat64SliceEquals(expected, observed, t)
+	asserts.Float64SliceEquals(expected, observed, t)
 }
